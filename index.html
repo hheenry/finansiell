@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#35363A"/>
+        
+        <title>Finance | Henry Rodrigues</title>
+           
+        <link href="/public/styles/main.css" rel="stylesheet" />
+        <link href="/public/image/PlzG6X2.png" type="image/x-icon" rel="shortcut icon" sizes="128x128"/>
+        <link rel="apple-touch-icon-precomposed" href="/public/image/PlzG6X2.png"/>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;600&display=swap');
+        </style>
+        
+        <!-- Google Analitycs -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-277XY024XC"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-277XY024XC');
+            gtag('event', 'login', {'method': 'Google'});
+            
+            // Configure a target
+            gtag('config', 'GA_MEASUREMENT_ID_1');
+            gtag('config', 'GA_MEASUREMENT_ID_2', { 'groups': 'agency' });
+            gtag('config', 'GA_MEASUREMENT_ID_3', { 'groups': 'agency' });
+            // Route this sign_in event to Analytics IDs in the 'agency' group:
+            gtag('event', 'sign_in', { 'send_to': 'agency' });
+            
+            // Get a reference to the form element, assuming
+            // it contains the ID attribute "signup-form".
+            var form = document.getElementById('signup-form');
+            
+            // Add a listener for the "submit" event.
+            form.addEventListener('submit', function(event) {
+            
+            // Prevent the browser from submitting the form
+            // and thus unloading the current page.
+            
+            event.preventDefault();
+            
+            // Send the event to Google Analytics and
+            // resubmit the form once the hit is done.
+            gtag('event', 'signup_form_complete', {
+                'event_callback': function() {
+                form.submit();
+                }
+            });
+            });
+        </script>
+    </head>
+    <body>
+        <header id="logs" class="finance-project-header">
+            <section class="cont-header">
+                <img src="./public/image/logo.svg" alt="Logo - Finance">
+                <a class="calc" href="https://calc.forml.site" target="framename" onclick="window.open(this.href, this.target, 'width=333,height=555'); return false;">Calc</a>
+            </section>
+        </header>
+        <main class="finance-project-main">
+            <section id="balance">
+                <h2 class="sr-only">Balanço</h2>
+                <div class="card">
+                    <h3>
+                        <span>Entradas</span>
+                        <img src="./public/image/income.svg" alt="Imagem de entradas">
+                    </h3>
+                    <p id="incomeDisplay">R$ 0,00</p>
+                </div>
+                <div class="card">
+                    <h3>
+                        <span>Saídas</span>
+                        <img src="./public/image/expense.svg" alt="Imagem de saídas">
+                    </h3>
+                    <p id="expenseDisplay">R$ 0,00</p>
+                </div>
+                <div class="card total">
+                    <h3>
+                        <span>Total</span>
+                        <img src="./public/image/total.svg" alt="Imagem de total">
+                    </h3>
+                    <p id="totalDisplay">R$ 0,00</p>
+                </div>
+            </section>
+            <section id="transaction">
+                <h2 class="sr-only">Transações</h2>
+                <a href="#" onclick="Modal.open()" class="button new">+ Nova Transação</a>
+                <table id="data-table">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+        <div class="modal-overlay">
+            <div class="modal">
+                <div id="form">
+                    <h2>Nova Transação</h2>
+                    <form action="" onsubmit="Form.submit(event)">
+                        <div class="input-group">
+                            <label class="sr-only" for="description">Descrição</label>
+                            <input type="text" id="description" name="description"placeholder="Descrição">
+                        </div>
+                        <div class="input-group">
+                            <label class="sr-only" for="amount">Valor</label>
+                            <input type="number"step="0.01"id="amount" name="amount"placeholder="0,00"/>
+                            <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</small>
+                        </div>
+                        <div class="input-group">
+                            <label class="sr-only" for="date">Data</label>
+                            <input type="date" id="date" name="date"/>
+                        </div>
+                        <div class="input-group actions">
+                            <a onclick="Modal.close()"href="#" class="button cancel">Cancelar</a>
+                            <button>Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer><p>Finance | Henry Rodrigues</p></footer>
+    </body>
+    <script src="./public/javascript/main.js"></script>
+</html>
